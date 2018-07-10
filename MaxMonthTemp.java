@@ -13,7 +13,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class MaxxMonthTemp{
+public class MaxMonthTemp{
 
   public static void main(String[] args throws Exception){
     Configuration conf = new Configuration();
@@ -26,6 +26,7 @@ public class MaxxMonthTemp{
       Job job = Job.getInstance(conf, "Monthly Max Temp");
       job.setJarByClass(MaxMonthTemp.class);
       job.setMapperClass(MaxTempMapper.class);
+      job.setCombinerClass(MaxTempReducer.class);
       job.setReducerClass(MaxTempReducer.class);
 
       job.setOutKeyClass(Text.class);
